@@ -40,6 +40,10 @@ Space.prototype.addCoord = function(coord) {
   this.coord = (coord);
 }
 
+Space.prototype.removeCoord = function(coord) {
+  this.coord = null;
+}
+
 Space.prototype.addValue = function(value) {
   this.value = value;
 }
@@ -58,12 +62,16 @@ for (i = 0; i < 9; i++) {
 // Show X on spaces
 function showMark(id) {
   var spaceX = board.findSpace(id);
-  console.log(turn);
   if (turn === "x") {
     $("#coord" + spaceX.coord).text("X");
   } else {
     $("#coord" + spaceX.coord).text("O");
   }
+}
+
+function hideMark(id) {
+  var spaceeee = board.findSpace(id);
+  $("#coord" + spaceeee.coord).text(".");
 }
 
 var xValues = [];
@@ -101,8 +109,23 @@ function attachContactListeners() {
         this.value = value;
         space11.addValue(value);
       } else {
-        alert("That space is already taken!!!!")
+        console.log("That space is already taken!!!!");
+
       }
+      if (xValues.length > 3) {
+        console.log(board.findSpace(xValues[0]).coord);
+        board.findSpace(xValues[0]).coord = null;
+        xValues.shift();
+        hideMark(xValues[0]);
+      }
+
+      if (oValues.length > 3) {
+        console.log(board.findSpace(oValues[0]).coord);
+        board.findSpace(oValues[0]).coord = null;
+        oValues.shift();
+        hideMark(oValues[0]);
+      }
+
       valueArray();
       winnerIs();
 
