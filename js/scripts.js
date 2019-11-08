@@ -163,6 +163,9 @@ $(document).ready(function() {
     } else {
       turn = "x";
     }
+    if (xValues.length > 4 || oValues.length > 4) {
+      $(".existentialWinner").fadeIn(9000);
+    }
     console.log(board);
   });
 });

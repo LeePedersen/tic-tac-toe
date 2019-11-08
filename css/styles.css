@@ -65,7 +65,7 @@ body {
 h1 {
   font-size: 50px;
 }
-/* .board {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-} */
+
+.existentialWinner {
+  display: none;
+}
